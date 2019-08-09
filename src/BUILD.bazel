@@ -1,0 +1,31 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
+
+ts_library(
+    name = "src",
+    srcs = ["index.tsx", "app.tsx"],
+    tsconfig = "//:tsconfig.json",
+    deps = [
+        "@npm//react",
+        "@npm//@types/react",
+        "@npm//react-dom",
+        "@npm//@types/react-dom",
+    ],
+)
+
+ts_devserver(
+    name = "devserver",
+    additional_root_paths = [
+        "bazel_react_spike/node_modules/react/umd",
+        "bazel_react_spike/node_modules/react-dom/umd",
+    ],
+    port = 9999,
+    serving_path = "/bundle.min.js",
+    deps = [":src"],
+    static_files = [
+        ":index.html",
+        "//:node_modules/react/umd/react.development.js",
+        "//:node_modules/react-dom/umd/react-dom.development.js"
+    ],
+)

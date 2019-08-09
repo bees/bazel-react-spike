@@ -1,0 +1,25 @@
+{
+  "name": "bazel-react-spike",
+  "version": "0.1.0",
+  "license": "MIT",
+  "devDependencies": {
+    "@bazel/bazel": "latest",
+    "@bazel/ibazel": "latest",
+    "@bazel/buildifier": "latest",
+    "@bazel/typescript": "latest",
+    "@types/react-dom": "^16.8.5",
+    "@types/react": "^16.8.25",
+    "prettier": "^1.18.2",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "scripts": {
+    "start-frontend": "ibazel run //src:devserver",
+    "build-frontend": "bazel build //src:devserver",
+    "start": "yarn build-frontend && yarn start-frontend",
+    "clean": "bazel clean --async"
+  }
+}

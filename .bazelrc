@@ -1,0 +1,5 @@
+build --experimental_allow_incremental_repository_updates
+build --strategy=TypeScriptCompile=worker
+build --symlink_prefix=dist/
+query --experimental_allow_incremental_repository_updates
+run --nolegacy_external_runfiles
